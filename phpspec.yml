@@ -1,0 +1,7 @@
+suites:
+    default:
+      namespace: Application
+      src_path: 'module/Application/src/'
+    pozyczka:
+      namespace: Pozyczka
+      src_path: 'module/Pozyczka/src/'

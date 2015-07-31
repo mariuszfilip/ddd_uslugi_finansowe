@@ -50,6 +50,32 @@ return array(
                     ),
                 ),
             ),
+            'pozyczka' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/pozyczka',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Pozyczka',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:controller[/:action]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -58,7 +84,7 @@ return array(
             'Zend\Log\LoggerAbstractServiceFactory',
         ),
         'factories' => array(
-            'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+            'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory'
         ),
     ),
     'translator' => array(
@@ -75,6 +101,9 @@ return array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController'
         ),
+        'factories' => array(
+            'Application\Controller\Pozyczka' => 'Application\Controller\Service\PozyczkaControllerFactory',
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
